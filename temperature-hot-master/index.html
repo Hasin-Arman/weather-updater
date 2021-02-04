@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Temperature Hot</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background: url(images/bg-image.jpg) no-repeat;
+            background-size: cover;
+            height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <form class="col-md-6 m-auto py-5">
+            <div class="input-group mb-3">
+                <input id="input" type="text" class="form-control" placeholder="Enter a location for Weather ...">
+                <div class="input-group-append">
+                    <button id="searchButton"type="button" class="btn btn-danger">Search</button>
+                </div>
+            </div>
+        </form>
+        <div class="weather-status text-white text-center">
+            <img id="icon" src="" alt="">
+            <h1 id="cityName">Dhaka</h1>
+            <h3><span id="temp">38.06</span>&deg;C</h3>
+            <h1 id="status" class="lead">Clouds</h1>
+        </div>
+    </div>
+    <script>
+        document.getElementById('searchButton').addEventListener('click',function(){
+            
+            const city=document.getElementById("input").value;
+            fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=1566941338da15c72d1e1a07426ddec8&units=metric`)
+            .then(res => res.json())
+            .then(data =>{
+                document.getElementById('cityName').innerText=city;
+                document.getElementById('status').innerText=data.weather[0].main;
+                document.getElementById('temp').innerText=data.main.temp;
+                const Temperature=data.weather[0].icon;
+                document.getElementById('icon').src=`https://openweathermap.org/img/wn/${Temperature}@2x.png`
+              
+            })
+        })
+    </script>
+</body>
+
+</html>
