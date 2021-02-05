@@ -39,7 +39,7 @@
         document.getElementById('searchButton').addEventListener('click',function(){
             
             const city=document.getElementById("input").value;
-            fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=1566941338da15c72d1e1a07426ddec8&units=metric`)
+            fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=1566941338da15c72d1e1a07426ddec8&units=metric`)
             .then(res => res.json())
             .then(data =>{
                 document.getElementById('cityName').innerText=city;
